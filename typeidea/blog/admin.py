@@ -22,8 +22,8 @@ class PostInline(admin.TabularInline):  # StackedInline  样式不同
 @admin.register(Category, site=custom_site)
 class CategoryAdmin(BaseOwnerAdmin):
     inlines = [PostInline, ]
-    list_display = ('name', 'status', 'is_nav', 'created_time', 'post_count')
-    fields = ('name', 'status', 'is_nav')
+    list_display = ('name', 'owner','status', 'is_nav', 'created_time', 'post_count')
+    fields = ('name', 'status','owner' 'is_nav')
 
     def post_count(self, obj):
         return obj.post_set.count()
@@ -35,7 +35,7 @@ class CategoryAdmin(BaseOwnerAdmin):
 class TagAdmin(BaseOwnerAdmin):
     list_display = ('name', 'status', 'created_time')
     fields = ('name', 'status')
-
+#
 
 class CategoryOwnerFilter(admin.SimpleListFilter):
     """ 自定义过滤器只展示当前用户分类 """
